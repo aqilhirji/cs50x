@@ -1,0 +1,12 @@
+1.  A header file in the C standard library that provides a set of typedefs with specifiec width requirments. Also provides macros to specify limits, and functions to create the specified value types. 
+2.  You can limit the space in a file to exactly what's necessary for the type. This allows efficiency of space in files. 
+3.  BYTE - 1, DWORD - 4 bytes, LONG - 4 bytes, WORD - 2 bytes
+4.  HEX - 0x42 0x4d, ACII - BM
+5.  bfSize is the total number of bytes in the file, where biSize is the total number of bytes in the header file. 
+6.  biHeight is negative when the pixels in the data file are ordered from top to bottom. 
+7.  biBitCount
+8.  fopen may return null when it either can't find the file to open, or fails to open due to file size, permissions, etc. 
+9.  The third argument always defines the maximum number of files we'd like to read, which is always 1 in our case. 
+10. Padding gets a value of 3: sizeof(RGBTRIPLE) = 3, 3*3 = 9 modulo 4 = 1,  4 - 1 = 3, 3 modulo 4 = 3  
+11. fseek allows the accessing of a specific position in a file. 
+12. SEEK_CURR - is an integer argument to fseek or fseeki64 which specifies the position in a file relative to the current position. 

@@ -1,0 +1,4 @@
+0. The game allows dimensions of 3x3 up to 9x9.
+1. The data structure for the game board is a two-dimensional integer array (square matrix in math). 
+2. Function "greet" is called at the start of the game. 
+3. We need to implement "init", "draw", "move", and "won".

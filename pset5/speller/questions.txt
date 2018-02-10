@@ -1,0 +1,20 @@
+0.  Pneumonoultramicroscopicsilicovolcanoconiosis is the longest word in the english dictionary
+    and is a word that describes "a lung disease caused by inhaling very fine ash and sand dust"
+1.  Retrns resource measures for who, which can be SELF, CHILDREN, or THREAD
+2.  16 Members.
+3.  Listing them as a reference as opposed to a value uses less memory, as the values are not 
+    being modified, so references to their location in memory is more efficient. 
+4.  The FOR loop in main does the following: 
+    Looks at the stream file and reads in each progressive character as an int, until it gets to the end of the file. 
+    It then back-converts each int (char) into an ASCII character and checks to make sure the char is an alphabetical value or 
+    apostrophe. If it continues to find letters or apostrophes, it will move the index forward, until it reaches a terminating 
+    value for the word or until it reaches the max number of characters. If it reaches the end of the word, or max valid chars, 
+    the loop appends '\0' to state that the end of the word has been reached. Then it follows to check the words sequentially 
+    against the  specified dictionary to see if they're in the dictionary file. If the word is not in the file the program prints 
+    the mispelled word and increases the "misspellings" counter. After each word it resets the index and moves onto the next word 
+    in the file. 
+5.  The reason is probably related to the fact that fscanf with the %s qualifier stops at the first whitespace, but takes all 
+    non-whitespace characters as acceptable (including numbers, and other symbols separate from letters and apostrophes). 
+6.  Constant type declaration makes sure that the initial value can't be modified, which means that each word that's being checked 
+    along with the dictionary can't be changed. Parameters for check and load are const pointers as a safety feature, becase we 
+    don't want to allow changes to a read word or a dictionary word. 

@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Holdings
+{% endblock %}
+
+{% block main %}
+    <head>
+      <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+      
+      td, th {
+          border: 1px solid #f2f2f2;
+          text-align: left;
+          padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+          background-color: #f2f2f2;
+      }
+      </style>
+      </head>
+      <body>
+      
+      <table>
+        <thead>
+        <tr>
+          <th bgcolor = "#ccebff">Symbol</th>
+          <th bgcolor = "#ccebff">Shares Held</th>
+          <th bgcolor = "#ccebff">Average Purchase Price Per Share</th>
+          <th bgcolor = "#ccebff">Market Value Per Share</th>
+          <th bgcolor = "#ccebff">Profit (Loss) on Holding</th>
+        </tr>
+        </thead>
+          <tbody>
+                {% for holding in holdingDetails %}
+                <tr>
+                    <td>{{ holding["symbol"] }}</td>
+                    <td>{{ holding["num_shares_held"]}}</td>
+                    <td>{{ holding["avg_purchase_price"] }}</td>
+                    <td>{{ holding["value"] }}</td>
+                    <td>{{ holding["holding_profit_loss"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </body>
+      
+      <br>
+      <br>
+      <table>
+        <thead>
+        <tr>
+          <th bgcolor = "#ccebff">Cash In Account</th>
+          <th bgcolor = "#ccebff">Value of Holdings</th>
+          <th bgcolor = "#ccebff">Open Profit and Loss</th>
+        </tr>
+        </thead>
+          <tbody>
+            <tr>
+                <td>{{ cashOnHand }}</td>
+                <td>{{ holdingTotalValue }}</td>
+                <td>{{ openProfitLoss }}</td>
+            </tr>
+          </tbody>
+      </table>
+      <br>
+      <br>
+      <form action="{{ url_for('cashinjection') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="cash" placeholder="Add $? How Much?" type="integer"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Try My Luck</button>
+            </div>
+        </fieldset>
+    </form>
+      
+{% endblock %}

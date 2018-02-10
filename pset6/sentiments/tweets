@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+import os 
+import sys
+
+import helpers
+from analyzer import Analyzer
+import termcolor
+
+def main(): 
+	# check for correct number of args, if incorrect print error return 0
+	if len(sys.argv) != 2: 
+		print('Usage: ./tweets @twitter_username')
+		return 0
+
+	# get twitter handle, remove @
+	twitter_handle = sys.argv[1].strip('@')
+	# get tweets
+	tweets = helpers.get_user_timeline(twitter_handle, 50)
+	
+	positives = os.path.join(sys.path[0], "positive-words.txt")
+	negatives = os.path.join(sys.path[0], "negative-words.txt")
+	
+	tweet_analyzer = Analyzer(positives, negatives)
+	#if there's no tweets, kick an error and return 0
+	if tweets == None: 
+		print('User is private, user has no tweets, or username is incorrect')
+		return 0
+	
+	for line in tweets: 
+		score = tweet_analyzer.analyze(line)
+		if score > 0: 
+			print(termcolor.colored('{} {}'.format(score, line), 'green'))
+		elif score < 0: 
+			print(termcolor.colored('{} {}'.format(score, line), 'red'))	
+		else: 
+			print(termcolor.colored('{} {}'.format(score, line), 'yellow'))
+			
+if __name__ == "__main__":
+	main()

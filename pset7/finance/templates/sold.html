@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell Result
+{% endblock %}
+
+{% block main %}
+    <h3>Sold {{ numShares }} of symbol {{ stock.symbol }} at {{ stock.price }} per share. Cash has been deposited.</h3>
+{% endblock %}
